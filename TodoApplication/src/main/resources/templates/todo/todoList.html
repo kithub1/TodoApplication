@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 一覧表示 -->
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>実施済みタスク</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="todos: ${todos}">
+					<td th:text="${todos.title}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>未実施タスク</th>
+					<th>期限</th>
+				</tr>
+			</thead>
+			<tr th:each="done: ${doneTodos}">
+				<td th:text="${done.title}"></td>
+				<td th:text="${done.time_limit}"></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</body>
+</html>
