@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>タスク一覧</h3>
+	<table>
+		<tr th:each="obj : ${taskList}">
+			<td th:text=${obj.id}></td>
+			<td th:text=${obj.title}></td>
+			<td th:text=${obj.detail}></td>
+			<td th:text=${obj.type}></td>
+			<td th:text=${obj.deadline}></td>
+		</tr>
+	</table>
+</body>
+</html>

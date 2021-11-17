@@ -1,5 +1,3 @@
-INSERT INTO todo_items (id, title, done_flg, time_limit)
-VALUES(1, 'task1', 0, '2022-01-01');
-
-INSERT INTO todo_items (id, title, done_flg, time_limit)
-VALUES(2, 'task2', 1, '2022-02-02');
+INSERT INTO `task` VALUES
+(NULL,1,'JUnitを学習','テストの仕方を学習する','緊急','2020-07-07 15:00:00'),
+(NULL,1,'サービスの自作','マイクロサービスを作ってみる','重要','2020-09-13 17:00:00');

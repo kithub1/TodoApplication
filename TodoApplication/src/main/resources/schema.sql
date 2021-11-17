@@ -1,6 +1,10 @@
-CREATE TABLE IF NOT EXISTS todo_items(
-	id INT,
-	title VARCHAR(50),
-	done_flg numeric(1,0),
-	time_limit date
-);
+CREATE TABLE task (
+  id int(5) NOT NULL AUTO_INCREMENT,
+  user_id int(5) NOT NULL,
+  title varchar(50) NOT NULL,
+  detail text,
+  type varchar(20) NOT NULL,
+  deadline datetime NOT NULL,
+  PRIMARY KEY (id)
+) ;
+
