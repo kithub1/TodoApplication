@@ -4,10 +4,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.repository.TaskMapper">
 
-	<select id="selectAllTask"
-		resultType="com.example.demo.domain.model.Task">
+	<!-- マッピング定義(タスク) -->
+	<resultMap type="com.example.demo.domain.model.Task"
+		id="task">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="type_id" property="typeId" />
+		<result column="title" property="title" />
+		<result column="detail" property="detail" />
+		<result column="deadline" property="deadline" />
+		<association property="taskType" resultMap="taskType"/>
+	</resultMap>
+
+	<!-- マッピング定義(タスクタイプ) -->
+	<resultMap type="com.example.demo.domain.model.TaskType"
+		id="taskType">
+		<id column="id" property="id" />
+		<result column="type" property="type" />
+	</resultMap>
+
+	<select id="findAllTask"
+		resultMap="task">
 		SELECT *
 		FROM task
+		INNER JOIN task_type ON task.type_id =
+		task_type.id
 	</select>
+
+	<insert id="insertTask">
+		INSERT INTO task
+		(id, userId, title, detail, type,
+		deadline)
+		VALUES
+		(#{id}, #{userId}, #{title}, #{detail}, #{type},
+		#{deadline})
+	</insert>
 
 </mapper>

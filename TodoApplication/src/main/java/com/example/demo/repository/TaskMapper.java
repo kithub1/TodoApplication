@@ -9,6 +9,8 @@ import com.example.demo.domain.model.Task;
 @Mapper
 public interface TaskMapper {
 
-	public List<Task> selectAllTask();
+	public List<Task> findAllTask();
+
+	void insertTask(Task task);
 
 }

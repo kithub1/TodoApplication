@@ -9,9 +9,11 @@ public class Task {
 
 	private int id;
 	private int userId;
+	private int typeId;
 	private String title;
 	private String detail;
-	private String type;
 	private LocalDateTime deadline;
+
+	private TaskType taskType;
 
 }

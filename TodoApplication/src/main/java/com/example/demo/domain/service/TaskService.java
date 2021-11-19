@@ -6,6 +6,8 @@ import com.example.demo.domain.model.Task;
 
 public interface TaskService {
 
-	public List<Task> selectAllTask();
+	public List<Task> findAllTask();
+
+	public void insertTask(Task task);
 
 }

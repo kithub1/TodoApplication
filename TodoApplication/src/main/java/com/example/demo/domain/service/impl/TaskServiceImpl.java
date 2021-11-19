@@ -1,4 +1,4 @@
-package com.example.demo.domain.impl;
+package com.example.demo.domain.service.impl;
 
 import java.util.List;
 
@@ -16,8 +16,13 @@ public class TaskServiceImpl implements TaskService {
 	TaskMapper taskMapper;
 
 	@Override
-	public List<Task> selectAllTask() {
-		return taskMapper.selectAllTask();
+	public List<Task> findAllTask() {
+		return taskMapper.findAllTask();
+	}
+
+	@Override
+	public void insertTask(Task task) {
+		taskMapper.insertTask(task);
 	}
 
 }

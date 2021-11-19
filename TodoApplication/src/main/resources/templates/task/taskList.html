@@ -10,9 +10,8 @@
 		<tr th:each="obj : ${taskList}">
 			<td th:text=${obj.id}></td>
 			<td th:text=${obj.title}></td>
-			<td th:text=${obj.detail}></td>
-			<td th:text=${obj.type}></td>
 			<td th:text=${obj.deadline}></td>
+			<td th:text=${obj.taskType.type}></td>
 		</tr>
 	</table>
 </body>
