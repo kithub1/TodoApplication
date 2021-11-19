@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,8 +23,8 @@ public class TaskController {
 	@Autowired
 	TaskService taskService;
 
-	//	@Autowired
-	//	private ModelMapper modelMapper;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@GetMapping
 	public String getTodoList(@ModelAttribute TaskForm form, Model model) {
@@ -33,6 +35,7 @@ public class TaskController {
 		List<Task> taskList = taskService.findAllTask();
 		model.addAttribute("taskList", taskList);
 
+
 		return "task/taskList";
 	}
 
@@ -40,17 +43,34 @@ public class TaskController {
 	public String insertTask(@ModelAttribute TaskForm taskForm,
 			Model model) {
 
-//		Task task = modelMapper.map(taskForm, Task.class);
+		Task task = modelMapper.map(taskForm, Task.class);
 
-		Task task = new Task();
-		task.setUserId(1);
-		task.setTypeId(taskForm.getTypeId());
-		task.setTitle(taskForm.getTitle());
-		task.setDetail(taskForm.getDetail());
-		task.setDeadline(taskForm.getDeadline());
+		//		Task task = new Task();
+		//		task.setUserId(1);
+		//		task.setTypeId(taskForm.getTypeId());
+		//		task.setTitle(taskForm.getTitle());
+		//		task.setDetail(taskForm.getDetail());
+		//		task.setDeadline(taskForm.getDeadline());
+
 		taskService.insertTask(task);
 
 		return "redirect:/task";
+	}
+
+	@GetMapping("/{id}")
+	public String getOneTask(TaskForm form,
+			@PathVariable int id,
+			Model model) {
+
+		Task task = taskService.findOneTask(id);
+
+		form = modelMapper.map(task, TaskForm.class);
+
+		model.addAttribute("taskList", task);
+
+		model.addAttribute("taskForm", form);
+
+		return "task/taskList";
 	}
 
 }

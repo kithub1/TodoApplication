@@ -25,4 +25,9 @@ public class TaskServiceImpl implements TaskService {
 		taskMapper.insertTask(task);
 	}
 
+	@Override
+	public Task findOneTask(int id) {
+		return taskMapper.findOneTask(id);
+	}
+
 }

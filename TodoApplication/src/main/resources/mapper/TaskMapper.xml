@@ -13,7 +13,7 @@
 		<result column="title" property="title" />
 		<result column="detail" property="detail" />
 		<result column="deadline" property="deadline" />
-		<association property="taskType" resultMap="taskType"/>
+		<association property="taskType" resultMap="taskType" />
 	</resultMap>
 
 	<!-- マッピング定義(タスクタイプ) -->
@@ -23,19 +23,31 @@
 		<result column="type" property="type" />
 	</resultMap>
 
-	<select id="findAllTask"
-		resultMap="task">
+	<select id="findAllTask" resultMap="task">
 		SELECT *
 		FROM task
-		INNER JOIN task_type ON task.type_id =
+		INNER JOIN
+		task_type ON task.type_id =
 		task_type.id
 	</select>
 
 	<insert id="insertTask">
 		INSERT INTO task
-		(user_id, type_id, title, detail, deadline)
+		(user_id, type_id, title, detail,
+		deadline)
 		VALUES
 		(#{userId}, #{typeId}, #{title}, #{detail},#{deadline})
 	</insert>
+
+	<select id="findOneTask" resultMap="task">
+		SELECT *
+		FROM task
+		INNER JOIN
+		task_type ON task.type_id =
+		task_type.id
+		WHERE
+		task.id
+		= #{id};
+	</select>
 
 </mapper>

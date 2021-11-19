@@ -11,6 +11,8 @@ public interface TaskMapper {
 
 	public List<Task> findAllTask();
 
-	void insertTask(Task task);
+	public void insertTask(Task task);
+
+	public Task findOneTask(int id);
 
 }

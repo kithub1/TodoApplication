@@ -10,4 +10,6 @@ public interface TaskService {
 
 	public void insertTask(Task task);
 
+	public Task findOneTask(int id);
+
 }
