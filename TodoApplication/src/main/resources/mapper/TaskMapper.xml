@@ -33,11 +33,9 @@
 
 	<insert id="insertTask">
 		INSERT INTO task
-		(id, userId, title, detail, type,
-		deadline)
+		(user_id, type_id, title, detail, deadline)
 		VALUES
-		(#{id}, #{userId}, #{title}, #{detail}, #{type},
-		#{deadline})
+		(#{userId}, #{typeId}, #{title}, #{detail},#{deadline})
 	</insert>
 
 </mapper>

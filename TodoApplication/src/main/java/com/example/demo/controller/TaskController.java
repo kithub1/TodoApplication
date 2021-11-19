@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +21,14 @@ public class TaskController {
 	@Autowired
 	TaskService taskService;
 
-	@Autowired
-	private ModelMapper modelMapper;
+	//	@Autowired
+	//	private ModelMapper modelMapper;
 
 	@GetMapping
 	public String getTodoList(@ModelAttribute TaskForm form, Model model) {
+
+		//新規登録か更新かを判断する仕掛け
+		form.setNewTask(true);
 
 		List<Task> taskList = taskService.findAllTask();
 		model.addAttribute("taskList", taskList);
@@ -38,11 +40,17 @@ public class TaskController {
 	public String insertTask(@ModelAttribute TaskForm taskForm,
 			Model model) {
 
-		Task task = modelMapper.map(taskForm, Task.class);
+//		Task task = modelMapper.map(taskForm, Task.class);
 
-		taskService.insertTask(task);;
+		Task task = new Task();
+		task.setUserId(1);
+		task.setTypeId(taskForm.getTypeId());
+		task.setTitle(taskForm.getTitle());
+		task.setDetail(taskForm.getDetail());
+		task.setDeadline(taskForm.getDeadline());
+		taskService.insertTask(task);
 
-		return "redirect:/task/taskList";
+		return "redirect:/task";
 	}
 
 }
