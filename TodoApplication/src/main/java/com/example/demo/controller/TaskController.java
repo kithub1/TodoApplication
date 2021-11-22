@@ -91,8 +91,19 @@ public class TaskController {
 		taskService.updateTask(task);
 
 		redirectAttributes.addFlashAttribute("complete", "変更が完了しました");
-		return "redirect:/task/"+ taskId;
+		return "redirect:/task/" + taskId;
 
+	}
+
+	@PostMapping("/delete")
+	public String deleteTask(@RequestParam("taskId") int id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+
+		taskService.deleteTask(id);
+
+		redirectAttributes.addFlashAttribute("complete", "タスクを削除しました");
+		return "redirect:/task";
 	}
 
 }

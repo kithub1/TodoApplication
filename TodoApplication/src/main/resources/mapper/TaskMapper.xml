@@ -62,4 +62,11 @@
 		id = #{id}
 	</update>
 
+	<delete id="deleteTask">
+		DELETE FROM
+		task
+		WHERE
+		id = #{id}
+	</delete>
+
 </mapper>
