@@ -12,4 +12,6 @@ public interface TaskService {
 
 	public Task findOneTask(int id);
 
+	public void updateTask(Task task);
+
 }

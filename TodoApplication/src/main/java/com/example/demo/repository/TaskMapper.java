@@ -15,4 +15,6 @@ public interface TaskMapper {
 
 	public Task findOneTask(int id);
 
+	public void updateTask(Task task);
+
 }

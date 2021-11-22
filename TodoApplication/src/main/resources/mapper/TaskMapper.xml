@@ -50,4 +50,16 @@
 		= #{id};
 	</select>
 
+	<update id="updateTask">
+		UPDATE
+		task
+		SET
+		type_id = #{typeId},
+		title = #{title},
+		detail = #{detail},
+		deadline = #{deadline}
+		WHERE
+		id = #{id}
+	</update>
+
 </mapper>

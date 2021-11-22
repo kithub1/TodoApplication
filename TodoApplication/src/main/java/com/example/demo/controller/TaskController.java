@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.domain.model.Task;
 import com.example.demo.domain.service.TaskService;
@@ -34,7 +36,6 @@ public class TaskController {
 
 		List<Task> taskList = taskService.findAllTask();
 		model.addAttribute("taskList", taskList);
-
 
 		return "task/taskList";
 	}
@@ -67,10 +68,31 @@ public class TaskController {
 		form = modelMapper.map(task, TaskForm.class);
 
 		model.addAttribute("taskList", task);
-
+		model.addAttribute("taskId", id);
 		model.addAttribute("taskForm", form);
 
 		return "task/taskList";
+	}
+
+	@PostMapping("/update")
+	public String updateTask(@ModelAttribute TaskForm taskForm,
+			@RequestParam("taskId") int taskId,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+
+		Task task = new Task();
+		task.setId(taskId);
+		task.setUserId(1);
+		task.setTypeId(taskForm.getTypeId());
+		task.setTitle(taskForm.getTitle());
+		task.setDetail(taskForm.getDetail());
+		task.setDeadline(taskForm.getDeadline());
+
+		taskService.updateTask(task);
+
+		redirectAttributes.addFlashAttribute("complete", "変更が完了しました");
+		return "redirect:/task/"+ taskId;
+
 	}
 
 }

@@ -30,4 +30,10 @@ public class TaskServiceImpl implements TaskService {
 		return taskMapper.findOneTask(id);
 	}
 
+	@Override
+	public void updateTask(Task task) {
+		taskMapper.updateTask(task);
+
+	}
+
 }
