@@ -9,7 +9,7 @@ CREATE TABLE task (
   user_id int(5) NOT NULL,
   type_id int(2) NOT NULL,
   title varchar(50) NOT NULL,
-  detail text,
+  detail text NOT NULL,
   deadline datetime NOT NULL,
   PRIMARY KEY (id)
 ) ;
