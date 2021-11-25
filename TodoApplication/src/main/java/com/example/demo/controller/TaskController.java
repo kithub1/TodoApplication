@@ -38,7 +38,7 @@ public class TaskController {
 
 		List<Task> taskList = taskService.findAllTask();
 		model.addAttribute("taskList", taskList);
-		model.addAttribute("title", "タスク一覧");
+		model.addAttribute("title", "タスク登録");
 
 		return "task/taskList";
 	}
